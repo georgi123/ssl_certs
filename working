@@ -1,0 +1,27 @@
+
+srckeystore=$3
+dstkeystore=$2
+case $1 in
+  --list|-l)
+    keytool -list -v -keystore ${dstkeystore} ;;
+ --show|-s)
+    openssl pkcs12 -in ${dstkeystore} -nodes ;;
+ --import|-i)
+   keytool -importkeystore \
+     -srckeystore ${srckeystore} \
+     -destkeystore ${dstkeystore} \
+    -v ;;
+  *)
+   echo "use --list or -l to see keystore content"
+   echo "use --show or -s to print keystore content" 
+   echo "use --import or -i to import one keystore to the other";;
+esac
+
+
+
+keytool -list -v -keystore server.p12 -storepass 123456 -storetype PKCS12
+keytool -printcert -v -file mydomain.crt
+keytool -exportcert -keystore bginst.p12 -storetype PKCS12 -storepass zGce -alias bginst -file bginst.crt
+openssl pkcs12 -in ssl_keystore.p12 -nokeys -out cert.pem 
+openssl x509 -in bginst.cer -text -noout .p12    re7J
+keytool -importcert -file osvlipsmgmt1u-ca.crt -keystore mcm.p12 -alias ca  
