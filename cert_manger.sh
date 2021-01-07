@@ -20,7 +20,7 @@ case $1 in
  --iportcert|-ic)
     keytool -importcert -file ${cert} -keystore ${dstkeystore} -alias ${alias} ;;
  --exportcert|-ec)
-    keytool -exportcert -keystore ${dstkeystore} -storetype PKCS12 -alias ${alias} -file ${cert} ;; 
+    keytool -exportcert -keystore ${dstkeystore} -storetype PKCS12  -file ${cert} -alias ${alias} ;; 
   *)
    echo "use --list or -l to see keystore content"
    echo "use --show or -s to print keystore content" 
