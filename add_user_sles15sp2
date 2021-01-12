@@ -3,21 +3,25 @@
 ##Created by Georgy D
 ##Create Local user
 dir=/etc/pam.d
+group=$1
+user=$2
+gid=$3
+uid=$4
 
-echo "Enter groupname:"
-read group
-echo "Enter username:"
-read user
-echo "Enter gid:"
-read gid
-echo "Enter uid:"
-read uid
+echo "group=\$1"
+echo "user=\$2"
+echo "gid=\$3"
+echo "uid=\$4"
+
+echo "Press ctrl + c to exit."
+echo "Press any key to procced."
+read
 
 groupadd --gid ${gid} ${group}
 
 useradd --uid ${uid} -g ${group} ${user}
 
-cd $dir 
+cd ${dir}
 
 cp common-account.pam-config-backup common-account
 cp common-auth.pam-config-backup common-auth
