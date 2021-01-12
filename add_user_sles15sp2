@@ -2,12 +2,19 @@
 ##Only for sles15sp2 OS
 ##Created by Georgy D
 ##Create Local user
-user=$1
-group=$1
 dir=/etc/pam.d
-gid=$2
+
+echo "Enter groupname:"
+read group
+echo "Enter username:"
+read user
+echo "Enter gid:"
+read gid
+echo "Enter uid:"
+read uid
+
 groupadd --gid ${gid} ${group}
-uid=$2
+
 useradd --uid ${uid} -g ${group} ${user}
 
 cd $dir 
