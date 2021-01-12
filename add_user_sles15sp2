@@ -1,14 +1,14 @@
 #!/bin/bash
-##Only for sles12sp2 OS
+##Only for sles15sp2 OS
 ##Created by Georgy D
 ##Create Local user
 user=$1
 group=$1
 dir=/etc/pam.d
 gid=$2
-groupadd --gid 1002 ${group}
+groupadd --gid ${gid} ${group}
 uid=$2
-useradd --uid 1001 -g ${group} ${user}
+useradd --uid ${uid} -g ${group} ${user}
 
 cd $dir 
 
