@@ -1,0 +1,24 @@
+#!/bin/bash
+##Only for sles12sp2 OS
+##Created by Georgy D
+##Create Local user
+user=$1
+group=$1
+dir=/etc/pam.d
+gid=$2
+groupadd --gid 1002 ${group}
+uid=$2
+useradd --uid 1001 -g ${group} ${user}
+
+cd $dir 
+
+cp common-account.pam-config-backup common-account
+cp common-auth.pam-config-backup common-auth
+cp common-password.pam-config-backup common-password
+cp common-session.pam-config-backup common-session
+passwd ${user}
+
+cp common-account-pc common-account
+cp common-auth-pc common-auth
+cp common-password-pc common-password
+cp common-session-pc common-session
