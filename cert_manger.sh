@@ -12,6 +12,9 @@ case $1 in
     keytool -list -v -keystore ${dstkeystore} ;;
  --show|-s)
     openssl pkcs12 -in ${dstkeystore} -nodes ;;
+ --list-text-cerfile)
+  cer=$2
+  openssl x509 -in ${cer} -text ;; 
  --import|-i)
    keytool -importkeystore \
      -srckeystore ${srckeystore} \
@@ -24,6 +27,7 @@ case $1 in
   *)
    echo "use --list or -l to see keystore content"
    echo "use --show or -s to print keystore content" 
+   echo "use --list-text-cerfile to see .cer .pem file content"
    echo "use --importcert or -ic to import certificate in datakeystore"
    echo "use --importcer or -ec to export certificate from datakeystore"
    echo "use --import or -i to import one keystore to the other";;
